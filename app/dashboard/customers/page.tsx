@@ -1,3 +1,8 @@
-export default function page(){
-    return <p>Customers page</p>
+
+export default function page() {
+  return (
+    <>
+    <button ></button>
+    </>
+  );
 }
