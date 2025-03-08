@@ -152,30 +152,30 @@ export async function fetchInvoicesPages(query: string) {
   }
 }
 
-// export async function fetchInvoiceById(id: string) {
-//   try {
-//     const data = await sql<InvoiceForm>`
-//       SELECT
-//         invoices.id,
-//         invoices.customer_id,
-//         invoices.amount,
-//         invoices.status
-//       FROM invoices
-//       WHERE invoices.id = ${id};
-//     `;
+export async function fetchInvoiceById(id: string) {
+  try {
+    const data = await connectionPool.query(`
+      SELECT
+        invoices.id,
+        invoices.customer_id,
+        invoices.amount,
+        invoices.status
+      FROM invoices
+      WHERE invoices.id = $1
+    `, [100]);
 
-//     const invoice = data.rows.map((invoice) => ({
-//       ...invoice,
-//       // Convert amount from cents to dollars
-//       amount: invoice.amount / 100,
-//     }));
+    const invoice = data.rows.map((invoice) => ({
+      ...invoice,
+      // Convert amount from cents to dollars
+      amount: invoice.amount / 100,
+    }));
 
-//     return invoice[0];
-//   } catch (error) {
-//     console.error('Database Error:', error);
-//     throw new Error('Failed to fetch invoice.');
-//   }
-// }
+    return invoice[0];
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch invoice.');
+  }
+}
 
 export async function fetchCustomers() {
   try {
@@ -186,7 +186,6 @@ export async function fetchCustomers() {
       FROM customers
       ORDER BY name ASC
     `);
-
     const customers = data.rows;
     return customers;
   } catch (err) {
