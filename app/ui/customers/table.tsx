@@ -1,13 +1,9 @@
-import Image from 'next/image';
+import { fetchFilteredCustomers } from '@/app/lib/data';
 import { lusitana } from '@/app/ui/fonts';
 import Search from '@/app/ui/search';
-import {
-  CustomersTableType,
-  FormattedCustomersTable,
-} from '@/app/lib/definitions';
-import { fetchFilteredCustomers } from '@/app/lib/data';
+import Image from 'next/image';
 
-export default async function CustomersTable({query, currentPage}:{
+export default async function CustomersTable({query}:{
   query: string, currentPage: number;
 }) {
 

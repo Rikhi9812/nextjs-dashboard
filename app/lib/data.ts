@@ -1,12 +1,4 @@
 import connectionPool from '@/db';
-import {
-  CustomerField,
-  CustomersTableType,
-  InvoiceForm,
-  InvoicesTable,
-  LatestInvoiceRaw,
-  Revenue,
-} from './definitions';
 import { formatCurrency } from './utils';
 
 export async function fetchRevenue() {

@@ -2,7 +2,6 @@
 
 import { signIn } from "@/auth";
 import connectionPool from "@/db";
-import { error } from "console";
 import { AuthError } from "next-auth";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
